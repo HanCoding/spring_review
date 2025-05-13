@@ -13,7 +13,7 @@ class Member(
     @Column(nullable = false)
     val password: String,
     @Column(nullable = false)
-    val name: String
+    var name: String
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
