@@ -1,0 +1,19 @@
+package com.review.domain.member.member.controller
+
+import com.review.domain.member.member.MemberDto
+import com.review.domain.member.member.service.MemberService
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+
+@RestController
+@RequestMapping("/api/v1/adm/members")
+class ApiV1AdmMemberController(private val memberService: MemberService) {
+
+    @GetMapping
+    fun items(): List<MemberDto> {
+        return memberService.findAll().map {
+            MemberDto(it)
+        }
+    }
+}

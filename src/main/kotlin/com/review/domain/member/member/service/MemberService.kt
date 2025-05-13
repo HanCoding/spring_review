@@ -1,5 +1,6 @@
 package com.review.domain.member.member.service
 
+import com.review.domain.member.member.MemberDto
 import com.review.domain.member.member.entity.Member
 import com.review.domain.member.member.repository.MemberRepository
 import org.springframework.stereotype.Service
@@ -23,5 +24,9 @@ class MemberService(
 
     fun findByUsername(username: String): Member? {
         return memberRepository.findByUsername(username)
+    }
+
+    fun findAll(): List<Member> {
+        return memberRepository.findAll()
     }
 }

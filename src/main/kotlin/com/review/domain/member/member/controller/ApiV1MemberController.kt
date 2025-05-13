@@ -1,5 +1,6 @@
-package com.review.domain.member.member
+package com.review.domain.member.member.controller
 
+import com.review.domain.member.member.MemberDto
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
