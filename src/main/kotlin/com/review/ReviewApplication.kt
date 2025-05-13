@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SpringReviewApplication
+class ReviewApplication
 
 fun main(args: Array<String>) {
-    runApplication<SpringReviewApplication>(*args)
+    runApplication<ReviewApplication>(*args)
 }
