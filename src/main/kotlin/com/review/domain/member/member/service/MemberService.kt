@@ -1,8 +1,8 @@
 package com.review.domain.member.member.service
 
-import com.review.domain.member.member.MemberDto
 import com.review.domain.member.member.entity.Member
 import com.review.domain.member.member.repository.MemberRepository
+import com.review.standard.search.MemberSearchKeywordTypeV1
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
@@ -38,12 +38,32 @@ class MemberService(
         return memberRepository.findById(id).orElse(null)
     }
 
-    fun findAllByUsernameContaining(
+    fun search(
+        searchKeywordType: MemberSearchKeywordTypeV1,
         searchKeyword: String,
         page: Int,
         pageSize: Int): Page<Member> {
         val pageable: Pageable = PageRequest.of(page - 1, pageSize,
             Sort.by(Sort.Order.desc("id")))
-        return memberRepository.findAllByUsernameContaining(searchKeyword, pageable)
+
+        if (searchKeyword.isBlank()) {
+            return memberRepository.findAll(pageable);
+        }
+
+        return when (searchKeywordType) {
+            MemberSearchKeywordTypeV1.all-> {
+                memberRepository.findAllByUsernameContainingOrNameContaining(
+                    searchKeyword, searchKeyword, pageable
+                )
+            }
+
+            MemberSearchKeywordTypeV1.username-> {
+                memberRepository.findAllByUsernameContaining(searchKeyword, pageable)
+            }
+
+            MemberSearchKeywordTypeV1.nickname-> {
+                memberRepository.findAllByNameContaining(searchKeyword, pageable)
+            }
+        }
     }
 }

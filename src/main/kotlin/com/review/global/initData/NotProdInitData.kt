@@ -31,11 +31,11 @@ class NotProdInitData(
         if (memberService.count() > 0) return
 
         val memberSystem = memberService.join(
-            username = "system", password = "1234", name = "시스템"
+            username = "nopyu", password = "1234", name = "노퓨"
         )
 
-        val memberAdmin = memberService.join(username = "admin", password = "1234",
-            name = "관리자"
+        val memberAdmin = memberService.join(username = "pupu", password = "1234",
+            name = "뿌뿌"
         )
 
         val memberUser1 = memberService.join(
